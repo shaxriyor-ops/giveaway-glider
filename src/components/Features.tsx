@@ -32,7 +32,7 @@ const features = [
   {
     icon: <Shield className="w-6 h-6 text-primary" />,
     title: 'Secure & Private',
-    description: 'Your data and your subscribers' information is always kept secure and private.'
+    description: 'Your data and your subscribers\' information is always kept secure and private.'
   }
 ];
 
