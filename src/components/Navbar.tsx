@@ -4,7 +4,11 @@ import { Menu, X, Moon, Sun } from 'lucide-react';
 import Button from './Button';
 import { Link } from 'react-router-dom';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  children?: React.ReactNode;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -72,9 +76,13 @@ const Navbar: React.FC = () => {
                 {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
               </button>
               
-              <Button>
-                Start Now
-              </Button>
+              {children || (
+                <Link to="/auth">
+                  <Button>
+                    Start Now
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
           
@@ -123,9 +131,17 @@ const Navbar: React.FC = () => {
             >
               How It Works
             </Link>
-            <Button className="w-full">
-              Start Now
-            </Button>
+            {children ? (
+              <div onClick={() => setIsMobileMenuOpen(false)}>
+                {children}
+              </div>
+            ) : (
+              <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button className="w-full">
+                  Start Now
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       )}
