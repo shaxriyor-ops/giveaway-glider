@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Twitter, Telegram } from 'lucide-react';
+import { Github, Twitter, MessageCircle } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -23,7 +22,7 @@ const Footer: React.FC = () => {
                 <Twitter size={20} />
               </a>
               <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-                <Telegram size={20} />
+                <MessageCircle size={20} />
               </a>
             </div>
           </div>
