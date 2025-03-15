@@ -9,7 +9,202 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      channels: {
+        Row: {
+          channel_name: string
+          created_at: string
+          id: string
+          telegram_channel_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          channel_name: string
+          created_at?: string
+          id?: string
+          telegram_channel_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          channel_name?: string
+          created_at?: string
+          id?: string
+          telegram_channel_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      giveaways: {
+        Row: {
+          channel_id: string
+          created_at: string
+          description: string | null
+          end_date: string
+          id: string
+          num_winners: number
+          prize: string
+          start_date: string
+          status: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          channel_id: string
+          created_at?: string
+          description?: string | null
+          end_date: string
+          id?: string
+          num_winners?: number
+          prize: string
+          start_date?: string
+          status?: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          channel_id?: string
+          created_at?: string
+          description?: string | null
+          end_date?: string
+          id?: string
+          num_winners?: number
+          prize?: string
+          start_date?: string
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "giveaways_channel_id_fkey"
+            columns: ["channel_id"]
+            isOneToOne: false
+            referencedRelation: "channels"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          id: string
+          updated_at: string
+          username: string | null
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          updated_at?: string
+          username?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          updated_at?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
+      subscribers: {
+        Row: {
+          channel_id: string
+          first_name: string | null
+          id: string
+          joined_at: string
+          last_name: string | null
+          telegram_user_id: string
+          username: string | null
+        }
+        Insert: {
+          channel_id: string
+          first_name?: string | null
+          id?: string
+          joined_at?: string
+          last_name?: string | null
+          telegram_user_id: string
+          username?: string | null
+        }
+        Update: {
+          channel_id?: string
+          first_name?: string | null
+          id?: string
+          joined_at?: string
+          last_name?: string | null
+          telegram_user_id?: string
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscribers_channel_id_fkey"
+            columns: ["channel_id"]
+            isOneToOne: false
+            referencedRelation: "channels"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_tokens: {
+        Row: {
+          bot_token: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          bot_token: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          bot_token?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      winners: {
+        Row: {
+          giveaway_id: string
+          id: string
+          selected_at: string
+          subscriber_id: string
+        }
+        Insert: {
+          giveaway_id: string
+          id?: string
+          selected_at?: string
+          subscriber_id: string
+        }
+        Update: {
+          giveaway_id?: string
+          id?: string
+          selected_at?: string
+          subscriber_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "winners_giveaway_id_fkey"
+            columns: ["giveaway_id"]
+            isOneToOne: false
+            referencedRelation: "giveaways"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "winners_subscriber_id_fkey"
+            columns: ["subscriber_id"]
+            isOneToOne: false
+            referencedRelation: "subscribers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

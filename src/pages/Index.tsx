@@ -1,54 +1,40 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+
+import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Features from '@/components/Features';
 import HowItWorks from '@/components/HowItWorks';
-import Footer from '@/components/Footer';
-import GlassCard from '@/components/GlassCard';
-import Button from '@/components/Button';
 
-const Index: React.FC = () => {
-  useEffect(() => {
-    // Scroll to top when component mounts
-    window.scrollTo(0, 0);
-  }, []);
-
+const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <Navbar>
+        <Link to="/auth">
+          <Button variant="default">Get Started</Button>
+        </Link>
+      </Navbar>
       
-      <main className="flex-1">
+      <main className="flex-grow">
         <Hero />
         <Features />
         <HowItWorks />
         
-        {/* CTA Section */}
-        <section className="py-20 relative overflow-hidden">
-          <div 
-            className="absolute inset-0 bg-cover bg-center z-0 opacity-10"
-            style={{ backgroundImage: `url(/src/assets/waves.svg)` }}
-          ></div>
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Supercharge Your Telegram Giveaways?</h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Start using GiveawayBot today and simplify your giveaway process from start to finish.
-              </p>
-              
-              <GlassCard className="md:p-8">
-                <div className="text-center max-w-xl mx-auto">
-                  <h3 className="text-xl font-semibold mb-4">Get Started in Minutes</h3>
-                  <p className="text-muted-foreground mb-6">
-                    No complicated setup. Just connect your Telegram bot token and start creating engaging giveaways for your audience.
-                  </p>
-                  <Button size="lg">
-                    Launch Your First Giveaway
-                  </Button>
-                </div>
-              </GlassCard>
-            </div>
+        <section className="py-20 bg-primary/5">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Boost Engagement?</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              Start creating engaging giveaways for your Telegram audience today.
+              It only takes a few minutes to set up your first campaign.
+            </p>
+            <Link to="/auth">
+              <Button size="lg" className="px-8">
+                Get Started
+              </Button>
+            </Link>
           </div>
         </section>
       </main>
