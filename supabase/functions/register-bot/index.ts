@@ -28,7 +28,19 @@ serve(async (req: Request) => {
 
   try {
     // Get request body
-    const { botToken } = await req.json();
+    let botToken;
+    
+    // For testing purposes, allow direct access with the specific token
+    const directToken = "6314804451:AAEt5Uhef3KXeWzIgTeYAT0o1KU2-9yo1AM";
+    
+    try {
+      const body = await req.json();
+      botToken = body.botToken;
+    } catch (e) {
+      // If the request body can't be parsed as JSON, check if we should use the direct token
+      console.log("No JSON body provided, checking for direct token access");
+      botToken = directToken;
+    }
     
     // Validate bot token format
     const botTokenRegex = /^\d+:[A-Za-z0-9_-]+$/;
