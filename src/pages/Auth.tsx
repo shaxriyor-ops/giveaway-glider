@@ -10,7 +10,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 
 const Auth = () => {
   const [loading, setLoading] = useState(false);
-  const [botToken, setBotToken] = useState('6314804451:AAEt5Uhef3KXeWzIgTeYAT0o1KU2-9yo1AM');
+  const [botToken, setBotToken] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
